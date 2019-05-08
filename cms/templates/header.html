@@ -1,0 +1,48 @@
+{% load static %}
+<nav class="navbar navbar-expand-sm navbar-light bg-light font-weight-bold" >
+  <div class="container">
+    <a href="{% url 'home' %}" class="navbar-brand">
+      <img class="navbar-logo" src="{% static "Logo Meeting.png" %}" alt="" />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      data-target="#my-nav"
+      data-toggle="collapse"
+      aria-controls="my-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav" class="collapse navbar-collapse ">
+      <ul class="navbar-nav ml-auto text-center">
+          <li class="nav-item">
+              <a class="nav-link text-danger " href="{% url 'organizations:create' %}"
+                >Yeni grup
+                <i class="fas fa-plus"></i>
+              </a>
+            </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:account' %}">Hesabım </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:logout' %}">Çıkış yap </a>
+          </li>
+        {% else %}
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:login' %}">Oturum aç </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'users:signup' %}">Kaydol</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+

@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% load static %}
+{% block content %}
+<!-- ##########   MAIN PHOTO   ########## -->
+<section class="main-photo">
+  
+  <div class="container">
+    <div class="main-photo-text ">
+      <p class="main-photo-text-main">Nelerden hoslanırsın?</p>
+      <p class="text-light main-photo-text-secondary">
+        {% if user.is_authenticated %} Keşfetmek ister misin? {% else %}
+        Keşfetmek için bize katıl {% endif %}
+      </p>
+    </div>
+    
+  </div>
+</section>
+<!-- ##########   END MAIN PHOTO   ########## -->
+
+<!-- ##########   MAIN CARDS   ########## -->
+<section class="main-cards mt-5">
+  <div class="container ">
+    <div class="main-cards-head">
+      <h5>Son Eklenen Etkinlikler</h5>
+      
+    </div>
+    <div class="row d-flex justify-content-center">
+      {% for i in latest_events_list %}
+      <div class="card border text-center border-danger col-md ">
+        <div class="card-body ">
+          <div class="card-title  font-weight-bold">
+            <a class="nounderline text-dark" href="{% url 'events:detail' i.pk %}">{{i.event_name}}</a>
+          </div>
+          <div class="card-text text-secondary">
+            
+          </div>
+          <div class="card-text text-secondary">
+          {{ i.event_addresses }}
+
+          </div>
+          <div class="card-text card-date font-weight-bold  font-italic">
+            {{i.event_date}}
+          </div>
+        </div>
+        <a
+        href="{% url 'events:detail' i.pk %}"
+          class="card-footer btn btn-danger bg-danger text-right font-italic font-weight-bold "
+        >
+          Katıl
+        </a>
+      </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</section>
+<!-- ##########   END MAIN CARDS   ########## -->
+
+<!-- ##########   CATEGORIES   ########## -->
+<section class="main-categories mt-5">
+  <div class="container">
+      <h5>Kategoriler</h5>
+    <div class="row">
+      <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+          <a href="{% url 'events:category'  'COM' %}" class="text-dark"><img src="{% static "Bilgisayar.png" %}" alt="" width="150px"></a>
+      </div>
+      <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+          <a href="{% url 'events:category'  'SCI' %}" class="text-dark"><img src="{% static "Bilim.png" %}" alt="" width="150px"></a>
+        </div>
+        <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+            <a href="{% url 'events:category'  'BK' %}" class="text-dark"><img src="{% static "Kitaplar.png" %}" alt="" width="150px"></a>
+          </div>
+          <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+              <a href="{% url 'events:category'  'LRN' %}" class="text-dark"><img src="{% static "ogrenme.png" %}" alt="" width="150px"></a>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+            <a href="{% url 'events:category'  'ART' %}" class="text-dark"><img src="{% static "Sanat.png" %}" alt="" width="150px"></a>
+        </div>
+        <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+            <a href="{% url 'events:category'  'TRA' %}" class="text-dark"><img src="{% static "Spor.png" %}" alt="" width="150px"></a>
+          </div>
+          <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+              <a href="{% url 'events:category'  'TCH' %}" class="text-dark"><img src="{% static "Teknoloji.png" %}" alt="" width="150px"></a>
+            </div>
+            <div class="col-md card d-flex align-items-center bg-transparent border border-0">
+                <a href="{% url 'events:category'  'FOD' %}" class="text-dark"><img src="{% static "Yeme_icme.png" %}" alt="" width="150px"></a>
+              </div>
+      </div>
+  </div>
+</section>
+<!-- ##########   END CATEGORIES   ########## -->
+
+
+
+{% endblock content %}

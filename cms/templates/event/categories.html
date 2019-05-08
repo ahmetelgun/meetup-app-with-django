@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  
+  {% for i in events %}
+    <p><a href="{% url 'events:detail' i.pk %}">{{i.event_name}}</a></p>
+    <p>{{i.event_address}}</p>
+    <p>{{i.event_date}}</p>
+    <hr>
+    {% endfor %}
+
+</div>
+{% endblock content %}

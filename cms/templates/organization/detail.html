@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container  ">
+        <div class="row">
+        <div class="col-5  border  pt-4 d-flex flex-column align-items-center">
+            <img src="{{ username.user_photo.url }}" alt="" width="70px" class="">
+            <h2>{{organization.organization_name|upper}} </h2>
+            <p>Kurucusu</p>
+            <p> <a href="{% url 'users:detail' organization.custom_user.username %}"> {{organization.custom_user.first_name|upper}} {{organization.custom_user.last_name|upper}}</a></p>
+            <h4>Son etkinlikleri</h4>
+            {% for i in latest_events_list %}
+                <p><a href="{% url 'events:detail' i.pk %}">{{ i.event_name }}</a></p>
+            {% endfor %}
+            <hr>
+            <p>
+               {% if user.username == organization.custom_user.username %}
+                {% if isCreateEvent %}
+                <a href="{% url 'events:create' organization.pk %}">Yeni etkinlik olustur</a>
+                {% else %}
+                <a >Etkinlik oluşturmak için üye sayınızın 20'den fazla olması gerekiyor</a>
+
+               {% endif %} 
+               {% endif %} 
+            </p>
+            <hr>
+            {% if user.is_authenticated %}
+                {% if isMember%}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Ayrıl">
+                    </form>
+                {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Katıl">
+                </form>
+                {% endif %}
+
+            {% else %}
+
+            {% endif %}
+            <hr>
+            <p>Üyeleri</p>
+            {% for i in latest_member_list %}
+                <a href="{% url 'users:detail' i.username %}">{{i.first_name}} {{i.last_name}} </a>
+            {% endfor %}
+        </div>
+        <div class="col-7  border  pt-4 d-flex flex-column align-items-center">
+                <h3>Hakkında</h3>
+                <p>{{ organization.organization_detail }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

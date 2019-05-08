@@ -1,0 +1,91 @@
+.denemee{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+footer{
+  margin-top: 30px;
+}
+
+
+.navbar-logo {
+  width: 170px;
+}
+
+.main-photo {
+  background-image: url(/static/meetups_conferences_networking_workshops_events.jpg);
+  position: relative;
+  height: 350px;
+  margin-bottom: 20px;
+}
+.main-photo-text {
+  position: absolute;
+  top: 40px;
+}
+.main-photo-text-main {
+  color: #047863;
+  font-size: 50px;
+}
+.main-photo-text-secondary {
+  font-size: 30px;
+}
+.main-photo-register-button {
+  position: relative;
+  top: 250px;
+  height: 60px;
+  width: 250px;
+}
+.main-photo-register-button a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.main-cards .card {
+  margin: 10px;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.main-cards .card .card-text {
+  font-size: 0.9em;
+}
+.main-cards .card .card-date {
+  color: #047863;
+}
+.main-cards-head {
+  font-weight: bold;
+  display: flex;
+}
+.main-cards-head a {
+  height: 100%;
+  margin-left: auto;
+}
+
+.main-categories .card {
+  margin: 10px;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.page-footer {
+  background-color: black;
+}
+.page-footer li {
+  position: relative;
+  left: 5px;
+}
+
+.nounderline {
+  text-decoration: none !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+        <div class="row">
+                <div class="col-5  border pb-4 pt-4 d-flex flex-column align-items-center">
+                    <img src="{{ username.user_photo.url }}" alt="" width="70px" class="">
+                    <p>{{event.event_name|upper}} </p>
+                    <p>{{event.event_addresses}}</p>
+                    <p>{{event.event_date}}</p>
+
+                    <h4>katilimcilar</h4>
+        
+                    {% for i in event.event_participants.all %}
+                        <p><a href="{% url 'users:detail' i.username %}">{{i.first_name|upper}} {{i.last_name|upper}}</a></p>
+                    {% endfor %}
+                    {% if user.is_authenticated %}
+                    {% if isParticipant %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit" value="Katilmaktan vazgec">
+                        </form>
+                    {% else %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit" value="katil">
+                        </form>
+                    {% endif %}
+                    {% else%}
+                    Katılmak için giriş yapın
+                    {% endif %}
+                    
+                </div>
+                <div class="col-7  border  pt-4 d-flex flex-column align-items-center">
+                        <h3>Hakkında</h3>
+                        <p>{{event.event_detail}}</p>
+                    </div>
+                </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+etkinlik ismi: {{ event.event_name }} 
+<p>etkinlik tarihi {{ event.event_date.day }}/{{ event.event_date.month }}/{{ event.event_date.year }}</p>
+{% if user.is_authenticated %}
+{% if isParticipant %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Katilmaktan vazgec">
+    </form>
+{% else %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="katil">
+    </form>
+{% endif %}
+{% else%}
+katilmak icin gris yapin
+{% endif %}
+
+katilimcilar <br>
+{% for i in event.event_participants.all %}
+    <a href="{% url 'users:detail' i.username %}">{{ i.first_name }} {{ i.last_name }}</a>
+
+{% endfor %}
+
+<br><br><br>
+<img src="{{event.event_photo.url}}" alt="" width="100" height="60">

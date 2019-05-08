@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container  ">
+        <div class="row">
+        <div class="col-5  border  pt-4 d-flex flex-column align-items-center">
+            <img src="{{ user.user_photo.url }}" alt="" width="70px" class="">
+            <p>{{user.first_name|upper}} {{user.last_name|upper}}</p>
+            <p>{{user.email}}</p>
+            <h4>Gruplarım</h4>
+
+            {% for i in user.organizationmodel_set.all %}
+                <p><a href="{% url 'organizations:detail' i.pk %}">{{i.organization_name}}</a></p>
+            {% endfor %}
+
+            {% for i in user.event_set.all %}
+            a
+            {% endfor %}
+        </div>
+        <div class="col-7  border  pt-4 d-flex flex-column align-items-center">
+                <h3>Hakkımda</h3>
+                <p>{{user.about}}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
